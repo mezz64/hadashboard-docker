@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND="noninteractive"
 
 # install packages for dashing
 RUN apt-get update && \
-	apt-get install software-properties-common && \
+	apt-get install software-properties-common -y --no-install-recommends && \
 	apt-add-repository ppa:brightbox/ruby-ng && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends build-essential ruby2.1 ruby2.1-dev python3-pip git node nodejs libsqlite3-dev postgresql-server-dev-9.3 libpq-dev sqlite && \
