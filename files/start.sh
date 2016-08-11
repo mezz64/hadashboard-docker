@@ -33,5 +33,7 @@ fi
 #cp /hadashboard/Gemfile.lock /config/Gemfile.lock
 cd /config
 bundle
+# Start hapush
+python3 ./hapush/hapush.py hapush/hapush.cfg > hapush/hapush.log &
 # Start dashing
 exec dashing start
