@@ -40,11 +40,11 @@ RUN pip3 install daemonize sseclient configobj && \
 #    ln -s /dashing/config/config.ru /dashing/config.ru && \
 #    ln -s /dashing/config /config
 
-# Clone hadashboard repository for hapush and gems
-#RUN git clone https://github.com/acockburn/hadashboard.git && \
-#RUN	cd /config && \
-#	bundle 
-#	cd /dashing
+# Clone hadashboard repository to get bundle gems
+RUN git clone https://github.com/acockburn/hadashboard.git && \
+	cd /hadashboard && \
+	bundle && \
+	cd /
 
 COPY files/start.sh /
 
