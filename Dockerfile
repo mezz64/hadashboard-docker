@@ -25,31 +25,33 @@ RUN gem install dashing --no-rdoc --no-ri && \
 RUN pip3 install daemonize sseclient configobj && \
 	pip3 install --upgrade requests
 
-RUN mkdir /dashing && \
-    dashing new dashing && \
-    cd /dashing && \
-    bundle && \
-    ln -s /dashing/dashboards /dashboards && \
-    ln -s /dashing/jobs /jobs && \
-    ln -s /dashing/assets /assets && \
-    ln -s /dashing/lib /lib-dashing && \
-    ln -s /dashing/public /public && \
-    ln -s /dashing/widgets /widgets && \
-    mkdir /dashing/config && \
-    mv /dashing/config.ru /dashing/config/config.ru && \
-    ln -s /dashing/config/config.ru /dashing/config.ru && \
-    ln -s /dashing/config /config
+#RUN mkdir /dashing && \
+#    dashing new dashing && \
+#    cd /dashing && \
+#    bundle && \
+#    ln -s /dashing/dashboards /dashboards && \
+#    ln -s /dashing/jobs /jobs && \
+#    ln -s /dashing/assets /assets && \
+#    ln -s /dashing/lib /lib-dashing && \
+#    ln -s /dashing/public /public && \
+#    ln -s /dashing/widgets /widgets && \
+#    mkdir /dashing/config && \
+#    mv /dashing/config.ru /dashing/config/config.ru && \
+#    ln -s /dashing/config/config.ru /dashing/config.ru && \
+#    ln -s /dashing/config /config
 
 # Clone hadashboard repository for hapush and gems
-RUN git clone https://github.com/acockburn/hadashboard.git && \
-	cd /hadashboard && \
-	bundle && \
-	cd /dashing
+#RUN git clone https://github.com/acockburn/hadashboard.git && \
+#RUN	cd /config && \
+#	bundle 
+#	cd /dashing
 
 COPY files/start.sh /
 
-VOLUME ["/dashboards", "/jobs", "/lib-dashing", "/config", "/public", "/widgets", "/assets"]
+#VOLUME ["/dashboards", "/jobs", "/lib-dashing", "/config", "/public", "/widgets", "/assets"]
 
+
+VOLUME /config
 
 # Clone hadashboard repository
 #RUN git clone https://github.com/acockburn/hadashboard.git && \
@@ -59,7 +61,7 @@ VOLUME ["/dashboards", "/jobs", "/lib-dashing", "/config", "/public", "/widgets"
 EXPOSE 3030
 
 # Change to hadashboard working directory
-WORKDIR /dashing
+WORKDIR /config
 
 #ENTRYPOINT ["dashing"]
 #CMD ["start", "-p", "3030"]

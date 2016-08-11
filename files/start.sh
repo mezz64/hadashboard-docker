@@ -30,7 +30,8 @@ if [[ ! -e /installed ]]; then
   touch /installed
 fi
 
-cp /hadashboard/Gemfile.lock /config/Gemfile.lock
-
+#cp /hadashboard/Gemfile.lock /config/Gemfile.lock
+cd /config
+bundle
 # Start dashing
 exec dashing start
